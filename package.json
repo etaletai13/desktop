@@ -3,77 +3,33 @@
   "version": "1.5.0",
   "license": "MIT",
   "private": false,
-  "node-main": "./hub/msc.js",
-  "main": "./interface/index.html",
-  "window": {
-    "title": "Musicoin Desktop",
-    "icon": "./favicon.png",
-    "width": 1000,
-    "min_width": 1000,
-    "height": 600,
-    "min_height": 600,
-    "resizeable": true
-  },
-  "webkit": {
-    "plugin": true,
-    "page-cache": true
-  },
-  "build": {
-    "appId": "org.musicoin.app.desktop",
-    "nwVersion": "stable",
-    "nwFlavor": "normal",
-    "output": "dist",
-    "exlcude": [
-      "./*.md",
-      "./local",
-      "./node_modules/bower",
-      "./node_modules/interface",
-      "./node_modules/musicoin-daemon",
-      "./node_modules/nw",
-      "./node_modules/nwjs-builder"
-    ],
-    "ffmpegIntegration": true,
-    "strippedProperties": [
-      "build"
-    ]
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Musicoin/desktop.git"
+    "url": "git@github.com:etaletai13/desktop.git"
   },
   "bugs": "https://github.com/Musicoin/desktop/issues",
-  "dependencies": {
-    "bluebird": "~3.5.1",
-    "bower": "~1.8.4",
-    "ethereum-blockies": "github:ethereum/blockies",
-    "ethers": "~3.0.17",
-    "fs-extra": "~5.0.0",
-    "fs-finder": "~1.8.1",
-    "interface": "github:musicoin/desktop-interface",
-    "jsqr": "~1.0.4",
-    "musicoin-daemon": "github:musicoin/gmc-node-modules",
-    "ntp-client": "~0.5.3",
-    "nwjs-builder": "~1.14.0",
-    "pngjs": "~3.3.2",
-    "qrcode": "~1.2.0",
-    "request": "~2.85.0",
-    "request-promise-native": "~1.0.5",
-    "web3": "github:musicoin/web3.js",
-    "y18n": "~4.0.0",
-    "zxcvbn": "~4.4.2"
+  "devDependencies": {
+    "bower": "1.8.4",
+    "interface": "github:Musicoin/desktop-interface",
+    "musicoin-daemon": "github:Musicoin/gmc-node-modules"
   },
   "engines": {
     "node": ">=8.0.0",
     "yarn": ">=1.6.0"
   },
   "scripts": {
-    "ux-build": "cd ./interface && ../node_modules/.bin/bower install && rm -f ./package.json",
-    "ux-copy": "mv ./node_modules/interface ./interface",
-    "gmc-copy": "mkdir -p ./bin/gmc && mv ./node_modules/musicoin-daemon/bin/gmc* ./bin/gmc/",
-    "preinstall": "rm -rf ./bin ./dist ./interface ./node_modules",
-    "postinstall": "yarn gmc-copy && yarn ux-copy && yarn ux-build",
-    "test": "rm -rf dist && ./node_modules/.bin/nwb nwbuild -v 0.30.0 --with-ffmpeg ./ -o dist/",
-    "debug": "./node_modules/.bin/nwb nwbuild -v 0.30.0 -r ./",
-    "dist": "yarn test && mv musicoin* dist"
+    "one": "echo 'Cleaning up' & rm -rf dist work/* build/* node_modules nwjs* && wget https://dl.nwjs.io/v0.30.5/nwjs-sdk-v0.30.5-osx-x64.zip",
+    "two": "echo 'Setting up file structure' && mkdir -p build/{bin/gmc,interface} && cp -r src/* build/",
+    "three": "echo 'Setting up nwjs project' & unzip -qo nwjs-sdk-v0.30.5-osx-x64.zip && cp -r nwjs-sdk-v0.30.5-osx-x64/ work/",
+    "four": "cp -r node_modules/interface/* build/interface/",
+    "five": "echo 'Installing yarn and bower deps...' & cd build && yarn install -fp && cd interface && bower install && rm -f package.json",
+    "six": "cp -r node_modules/musicoin-daemon/bin/* build/bin/gmc/",
+    "seven": "echo 'Moving build to working directory.' & mv build work/nwjs.app/Contents/Resources/app.nw",
+    "eight": " mkdir -p dist && mv work/nwjs.app dist/Musicoin\\ Desktop.app",
+    "preinstall": "yarn one && yarn two && yarn three",
+    "postinstall": "yarn four && yarn five && yarn six",
+    "prepare": "yarn seven && yarn eight",
+    "rebuild": "rm -rf dist work build && yarn two && yarn three && yarn postinstall && yarn prepare",
+    "test": "echo 'Write tests.'"
   }
 }

@@ -1,0 +1,52 @@
+{
+  "name": "musicoin-wallet",
+  "version": "1.5.0",
+  "license": "MIT",
+  "private": false,
+  "node-main": "./hub/msc.js",
+  "main": "./interface/index.html",
+  "window": {
+    "title": "Musicoin Desktop",
+    "icon": "./favicon.png",
+    "width": 1000,
+    "min_width": 1000,
+    "height": 600,
+    "min_height": 600,
+    "resizeable": true
+  },
+  "webkit": {
+    "plugin": true,
+    "page-cache": true
+  },
+  "build": {
+    "appId": "org.musicoin.app.desktop",
+    "nwVersion": "stable",
+    "nwFlavor": "normal",
+    "output": "../dist",
+    "ffmpegIntegration": true,
+    "strippedProperties": [
+      "build"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Musicoin/desktop.git"
+  },
+  "bugs": "https://github.com/Musicoin/desktop/issues",
+  "dependencies": {
+    "bluebird": "~3.5.1",
+    "ethereum-blockies": "github:ethereum/blockies",
+    "ethers": "~3.0.17",
+    "fs-extra": "~5.0.0",
+    "fs-finder": "~1.8.1",
+    "jsqr": "~1.0.4",
+    "ntp-client": "~0.5.3",
+    "pngjs": "~3.3.2",
+    "qrcode": "~1.2.0",
+    "request": "~2.85.0",
+    "request-promise-native": "~1.0.5",
+    "web3": "github:Musicoin/web3.js",
+    "y18n": "~4.0.0",
+    "zxcvbn": "~4.4.2"
+  }
+}
