@@ -5,6 +5,15 @@
   "private": false,
   "node-main": "./hub/msc.js",
   "main": "./interface/index.html",
+  "language": "en",
+  "defaults": {
+    "command": "./gmc",
+    "rpcport": "8545",
+    "rpcaddr": "127.0.0.1",
+    "rpccorsdomain": "localhost",
+    "cache": "512",
+    "rpcServer": "http://localhost:8545"
+  },
   "window": {
     "title": "Musicoin Desktop",
     "icon": "./favicon.png",
@@ -61,8 +70,7 @@
     "musicoin-daemon": "github:musicoin/gmc-node-modules"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "yarn": ">=1.6.0"
+    "yarn": "1.7.0"
   },
   "scripts": {
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
