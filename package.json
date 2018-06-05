@@ -2,7 +2,6 @@
   "name": "musicoin-wallet",
   "version": "1.5.0",
   "license": "MIT",
-  "private": false,
   "node-main": "./hub/msc.js",
   "main": "./interface/index.html",
   "window": {
@@ -20,21 +19,18 @@
   },
   "build": {
     "appId": "org.musicoin.app.desktop",
-    "nwVersion": "stable",
+    "nwVersion": "0.31.0",
     "nwFlavor": "normal",
     "output": "dist",
     "exlcude": [
       "./*.md",
       "./local",
-      "./node_modules/bower",
-      "./node_modules/interface",
-      "./node_modules/musicoin-daemon",
-      "./node_modules/nw",
-      "./node_modules/nwjs-builder"
+      "./interface/package.json"
     ],
     "ffmpegIntegration": true,
     "strippedProperties": [
-      "build"
+      "build",
+      "scripts"
     ]
   },
   "repository": {
@@ -44,14 +40,11 @@
   "bugs": "https://github.com/Musicoin/desktop/issues",
   "dependencies": {
     "bluebird": "~3.5.1",
-    "bower": "~1.8.4",
     "ethereum-blockies": "github:ethereum/blockies",
     "ethers": "~3.0.17",
     "fs-extra": "~5.0.0",
     "fs-finder": "~1.8.1",
-    "interface": "github:musicoin/desktop-interface",
     "jsqr": "~1.0.4",
-    "musicoin-daemon": "github:musicoin/gmc-node-modules",
     "ntp-client": "~0.5.3",
     "nwjs-builder": "~1.14.0",
     "pngjs": "~3.3.2",
@@ -63,17 +56,21 @@
     "zxcvbn": "~4.4.2"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "yarn": ">=1.6.0"
+    "node": ">=9.0.0",
+    "yarn": ">=1.7.0"
   },
   "scripts": {
-    "ux-build": "cd ./interface && ../node_modules/.bin/bower install && rm -f ./package.json",
-    "ux-copy": "mv ./node_modules/interface ./interface",
-    "gmc-copy": "mkdir -p ./bin/gmc && mv ./node_modules/musicoin-daemon/bin/gmc* ./bin/gmc/",
-    "preinstall": "rm -rf ./bin ./dist ./interface ./node_modules",
-    "postinstall": "yarn gmc-copy && yarn ux-copy && yarn ux-build",
-    "test": "rm -rf dist && ./node_modules/.bin/nwb nwbuild -v 0.30.0 --with-ffmpeg ./ -o dist/",
-    "debug": "./node_modules/.bin/nwb nwbuild -v 0.30.0 -r ./",
-    "dist": "yarn test && mv musicoin* dist"
+    "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
+    "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/gmc* ./bin/gmc/",
+    "clean": "rm -rf ./{bin,dist,interface,node_modules,*.log}",
+    "prepare": "yarn ux-copy & yarn gmc-copy",
+    "postinstall": "yarn build && yarn test",
+    "build": "./node_modules/.bin/nwb nwbuild ./",
+    "debug": "./node_modules/.bin/nwb nwbuild -r ./",
+    "test": "echo 'TODO: WRITE TESTS'"
+  },
+  "devDependencies": {
+    "musicoin-daemon": "github:Musicoin/gmc-node-modules#fixup-package-scripts",
+    "interface": "github:Musicoin/gmc-node-modules#fixup-package-scripts"
   }
 }
