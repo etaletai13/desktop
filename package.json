@@ -1,5 +1,6 @@
 {
   "name": "musicoin-wallet",
+  "description": "Official Musicoin desktop application.",
   "version": "1.5.0",
   "license": "MIT",
   "private": false,
@@ -7,7 +8,6 @@
   "main": "./interface/index.html",
   "window": {
     "title": "Musicoin Desktop",
-    "icon": "./favicon.png",
     "width": 1000,
     "min_width": 1000,
     "height": 600,
@@ -20,14 +20,16 @@
   },
   "build": {
     "appId": "org.musicoin.app.desktop",
-    "nwVersion": "stable",
+    "nwVersion": "0.30.5",
     "nwFlavor": "normal",
-    "output": "dist",
+    "output": "./dist",
     "exlcude": [
       "./*.md",
       "./local",
-      "./node_modules/nw",
-      "./node_modules/nwjs-builder"
+      "./interface/node_modules",
+      "./node_modules/interface",
+      "./node_modules/musicoin-builder",
+      "./node_modules/musicoin-daemon"
     ],
     "ffmpegIntegration": true,
     "strippedProperties": [
@@ -45,9 +47,11 @@
     "ethers": "~3.0.17",
     "fs-extra": "~5.0.0",
     "fs-finder": "~1.8.1",
+    "interface": "../desktop-interface",
     "jsqr": "~1.0.4",
+    "musicoin-builder": "../musicoin-builder",
+    "musicoin-daemon": "github:etaletai13/gmc-node-modules",
     "ntp-client": "~0.5.3",
-    "nwjs-builder": "~1.14.0",
     "pngjs": "~3.3.2",
     "qrcode": "~1.2.0",
     "request": "~2.85.0",
@@ -56,21 +60,19 @@
     "y18n": "~4.0.0",
     "zxcvbn": "~4.4.2"
   },
-  "devDependencies": {
-    "interface": "github:musicoin/desktop-interface",
-    "musicoin-daemon": "github:musicoin/gmc-node-modules"
-  },
   "engines": {
-    "node": ">=8.0.0",
-    "yarn": ">=1.6.0"
+    "node": "^8.0.0",
+    "yarn": "^1.7.0"
   },
   "scripts": {
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
-    "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/gmc* ./bin/gmc/",
-    "preinstall": "rm -rf ./interface ./bin",
-    "postinstall": "yarn gmc-copy && yarn ux-copy",
-    "test": "rm -rf dist && ./node_modules/.bin/nwb nwbuild -v 0.30.0 --with-ffmpeg ./ -o dist/",
-    "debug": "./node_modules/.bin/nwb nwbuild -v 0.30.0 -r ./"
+    "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
+    "preinstall": "rm -rf {./interface,./bin,./node_modules/musicoin-builder}",
+    "postinstall": "yarn gmc-copy & yarn ux-copy",
+    "prepare": "rm -rf dist && node ./node_modules/.bin/build --tasks mac-x64 ./",
+    "debug": "yarn postinstall && ./node_modules/.bin/run ./"
+  },
+  "devDependencies": {
+    "musicoin-dmg": "github:etaletai13/musicoin-dmg"
   }
 }
-
