@@ -6,9 +6,6 @@ language: node_js
 yarn: 1.7.0
 node_js: 8.0.0
 go: 1.10.0
-cache:
-  yarn:
-  - true
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
   - export PATH="$HOME/.yarn/bin:$PATH"
@@ -19,4 +16,6 @@ before_install:
 install:
   - travis_wait yarn --link-duplicates
 test:
-  - travis_wait yarn test
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 15 yarn build-mac; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 15 yarn build-linux; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 20 yarn build-win; fi
