@@ -1,4 +1,6 @@
-os: osx
+os: 
+  - linux
+  - osx
 osx_image: xcode9.3
 language: node_js
 yarn: 1.7.0
@@ -14,3 +16,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install wine; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qq wine; fi
+install:
+  - travis_wait yarn --link-duplicates
+test:
+  - travis_wait yarn test
