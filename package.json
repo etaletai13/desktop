@@ -53,7 +53,10 @@
   "scripts": {
     "preinstall": "rm -rf {./bin,./dist,./interface,./node_modules}",
     "debug": "./node_modules/.bin/run --x64 ./",
-    "test": "./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
+    "test": "yarn build-windows && yarn build-linux && yarn build-mac",
+    "build-windows": "./node_modules/.bin/build --tasks win-x64 --miror https://dl.nwjs.io/ ./", 
+    "build-linux": "./node_modules/.bin/.build --tasks linux-x64 --mirror http://dl.nwjs.io/ ./",
+    "build-mac": "./node_modules/.bin/build --tasks mac-x64 --mirror https://dl.nwjs.io/",
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "prepare": "yarn gmc-copy & yarn ux-copy",
