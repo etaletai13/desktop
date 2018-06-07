@@ -50,10 +50,6 @@
     "y18n": "~4.0.0",
     "zxcvbn": "~4.4.2"
   },
-  "engines": {
-    "node": ">8.0.0",
-    "yarn": ">=1.0.0"
-  },
   "scripts": {
     "preinstall": "rm -rf {./bin,./dist,./interface,./node_modules}",
     "debug": "./node_modules/.bin/run --x64 ./",
