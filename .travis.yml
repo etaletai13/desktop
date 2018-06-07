@@ -10,11 +10,7 @@ cache:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - brew install wine
-deploy:
-  provider: releases
-  api_key:
-    secure: bhbcdeWp4hm+/9mMavSSQXJXIQJzoNWVOEEMfhKOFuXbYoGmYxpqbY5tQVb8q/PGODJhfQJiYRStJfS8dLzO7InTUvqxeh3eoKk5VQ4Rz08W7JGCueAJYoOHAA8odTEHsP3UBD0uAO0waGlwoS0XhQ9AKeOXMkD8nbc3rq+qv3kByzfG0fb7YEaUCa7g6tisARPxI6IlmLvYjwYaVQltGYlxfjjV2Q9Uphjlfl/aIDnDtYB8t5WCT1qL+O9KFl53BEhtfbu3TTVS6c0KMEAY1uv+UupPbYHJrYXLRN/0AJ4yN1bcxm8yQfR0AOjmZtR2LXBTqyV1mRvtVb6QeKlwPOBKpHZyErOFPBDFxAdcidsgQxX4l6N0DScM/Ev8OA9AtojxRlmwvg9EFKtp7FLJlHl58b1qXsg0fnP/3uisckIn5EdUIaYEuRC7M05bISsT9qXjf519Bvxv2Xz2fwQPgTX6mvQUOqZvjyUFhH30bNgcLiLi+exbp8iXcXma6bAmsl3i9kFSAwV9DrZBZk1R0mnnAss1p3J3rHh9tHAEkEhfAbwM2o4bIvnk4b9qT3nYwDJbpPt7vxIq8vp8j0Vpr6rQI/9IHv3zgMWz2leWHacK1GrTiNw706MxejrxAzfPz6DzTZdtVaGkNrkDSExCvSm1o4UccUqix6/ML1M7rXs=
-  file: "./dist/"
-  on:
-    repo: etaletai13/gmc-node-module
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install wine; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qq wine; fi
