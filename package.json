@@ -39,7 +39,6 @@
     "interface": "github:etaletai13/desktop-interface#06-06-18",
     "jsqr": "~1.0.4",
     "musicoin-daemon": "github:etaletai13/gmc-node-modules",
-    "musicoin-dmg": "github:etaletai13/musicoin-dmg",
     "ntp-client": "~0.5.3",
     "nwjs-builder-phoenix": "^1.14.6",
     "pngjs": "~3.3.2",
