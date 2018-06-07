@@ -55,13 +55,13 @@
     "yarn": "^1.7.0"
   },
   "scripts": {
-    "preinstall": "rm -rf {./interface,./bin,./dist}",
-    "debug": "yarn && ./node_modules/.bin/run --x64 ./",
-    "test": "yarn --link-duplicates --production && yarn prebuild && ./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
+    "preinstall": "rm -rf {./bin,./dist,./interface,./node_modules}",
+    "debug": "./node_modules/.bin/run --x64 ./",
+    "test": "./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "postinstall": "yarn gmc-copy & yarn ux-copy",
-    "prebuild": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
+    "prepare": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
   },
   "devDependencies": {
     "7zip-bin-mac": "^1.0.1"
