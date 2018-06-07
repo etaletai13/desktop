@@ -36,7 +36,7 @@
     "ethers": "~3.0.17",
     "fs-extra": "~5.0.0",
     "fs-finder": "~1.8.1",
-    "interface": "../desktop-interface",
+    "interface": "github:etaletai13/desktop-interface#06-06-18",
     "jsqr": "~1.0.4",
     "musicoin-daemon": "github:etaletai13/gmc-node-modules",
     "musicoin-dmg": "github:etaletai13/musicoin-dmg",
@@ -56,13 +56,12 @@
   },
   "scripts": {
     "preinstall": "rm -rf {./interface,./bin,./dist}",
-    "debug": "yarn postinstall && ./node_modules/.bin/run --x64 ./",
-    "dist": "yarn --link-duplicates --production && yarn prebuild && ./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
+    "debug": "yarn && ./node_modules/.bin/run --x64 ./",
+    "test": "yarn --link-duplicates --production && yarn prebuild && ./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "postinstall": "yarn gmc-copy & yarn ux-copy",
-    "prebuild": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix",
-    "test": "yarn dist && echo 'No automated tests yet'"
+    "prebuild": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
   },
   "devDependencies": {
     "7zip-bin-mac": "^1.0.1"

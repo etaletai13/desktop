@@ -627,8 +627,9 @@ inherits@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
 
-interface@../desktop-interface:
+"interface@github:etaletai13/desktop-interface#06-06-18":
   version "1.5.1"
+  resolved "https://codeload.github.com/etaletai13/desktop-interface/tar.gz/e026d6593299d7fe963cfb91f36c28a30c9a05d4"
   dependencies:
     bower-installer "~1.3.6"
 
