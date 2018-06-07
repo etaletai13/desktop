@@ -60,7 +60,8 @@
     "prepare": "yarn gmc-copy & yarn ux-copy",
     "postinstall": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
   },
-  "devDependencies": {
+  "optionalDependencies": {
+    "7zip-bin-linux": "^1.0.1",
     "7zip-bin-mac": "^1.0.1"
   }
 }
