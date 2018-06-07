@@ -51,7 +51,8 @@
     "zxcvbn": "~4.4.2"
   },
   "engines": {
-    "yarn": "1.7.0"
+    "node": ">8.0.0",
+    "yarn": ">=1.0.0"
   },
   "scripts": {
     "preinstall": "rm -rf {./bin,./dist,./interface,./node_modules}",
