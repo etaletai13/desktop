@@ -56,8 +56,8 @@
     "test": "./node_modules/.bin/build --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ ./",
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
-    "postinstall": "yarn gmc-copy & yarn ux-copy",
-    "prepare": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
+    "prepare": "yarn gmc-copy & yarn ux-copy",
+    "postinstall": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
   },
   "devDependencies": {
     "7zip-bin-mac": "^1.0.1"
