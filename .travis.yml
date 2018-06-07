@@ -1,21 +1,43 @@
-os: 
-  - linux
-  - osx
+os:
+- linux
+- osx
 osx_image: xcode9.3
 language: node_js
 yarn: 1.7.0
 node_js: 8.0.0
 go: 1.10.0
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
-  - export PATH="$HOME/.yarn/bin:$PATH"
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install wine; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qq wine; fi
+- echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN
+  CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 install:
-  - travis_wait yarn --link-duplicates --production
+- yarn --link-duplicates --production
 after_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 15 yarn build-mac; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 15 yarn build-linux; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 20 yarn build-win; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait yarn build-mac; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-linux; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-win; fi
+deploy:
+  provider: releases
+  api_key:
+    secure: m4Z0nyVG5fo9qTJaR3PE4Auwf+8k4hBXRzHiC810klSU+FUvG9WeuJH+kIlLtb+/jqKRpmmRU4A7EHQZfkr2/gUGnfNgnGuu6geGA+7NEgwYpHpJz7i8b2EjEhvQi97JATgO/GamFW97Eem/pXLBK5spfblth1rs26w1bnzIfFpvNXI5vGkIlQ4oOLdIE2pNzrQNtr/6VHWOwVizi2TQewupYLHH1Xr+wA4FJFocFtHFB2dKy3a3YjUu4mWh9UjsHiDAcMZF+57ibRXubgKW/nAJuy21N7g9ptfcCSwxKwTq3kaMUcb7i1f9JK4ozW0sG+KdRZF29sMEY60xwuAiY+gyd0aWI03vvK8pOg5siEyHdomLlwygmdPIJiHujJxYFeoFM/vOulRmw1q3h7e6lJqALI0UFDzEuIJR168PlL5VM0xlKM0BueHHtxpHuNzT5P8Oaf4+udU4a++o1/Amlc+QLiss+9EMuVLKBhv5Jvde0r1rmU14A3ugucpTIV2o8DiJ+wNAzqPi725WcoGc7GOP/DIFsACaa7QuamLLLF5IaE6P8AU1/crCO8qYRKHxHsrEQ8hI5ZTNyGoOIk+PuWNUfzIC0vLPA4JIIyj+oZyof4vjR+fzyiWK1BwCKAhtoIVIhDC5SSY+bk1zKbpuWh7QBK/DmHpMnJVONs+IN+o=
+  file:
+  - dist/musicoin-wallet-1.5.0-linux-x86.zip
+  - dist/musicoin-wallet-1.5.0-linux-x64.zip
+  - dist/musicoin-wallet-1.5.0-mac-x64.zip
+  - dist\musicoin-wallet-1.5.0-win-x86-Setup.exe
+  - dist\musicoin-wallet-1.5.0-win-x64-Setup.exe
+  skip_cleanup: true
+  on:
+    tags: true
+addons:
+  coverity_scan:
+    project:
+      name: etaletai13/desktop
+      description: "Musicoin Desktop"
+    notification_email: 13@etaletai.com
+    build_command_prepend: "yarn --link-duplicates --production"
+    build_command: "yarn run build --tasks linux-x64 ./"
+    branch_pattern: staging
+env:
+  global:
+     - secure: "Mxmk277K5P/8FQhWpiqYwSNCG7SZqPWJ1ciNFJba5lrJH2OoVzpcTnK/BYUnJcDGaEtOBvl2srInvLcRJRehUJS+JNAMKx6uYJSy6D7aPe8nQvS5CPgp9M0fD1HbWcCgOztNxd+Uxfpa4OJvUfoNn0Tsz5GDZ+KlxRB/bbVKcMXSou8EymlGhrt6DnE3LLSMkgJO+ogTTrmpxf+JZVU46rGcUgeDg1te4aQfa9ppeMugZs+zhwj2LhMg1owX/SY1FdUQXQDdw31W5x0vR5Cb4r48ZlKmbsE7LzFNKS3cElBLUj6+fk2UbHTS8LMGJRRSmah6AZD+PK8/z92LHSmYQCrGtxOKvV7awNEj35VPEeAIt87g3cP7PCsxIAQNR4iPcUGHtQRROyghj2cc49FWDtePoBp0YYBdQEwBLKo/NSlHT4pJAKLzTTUTRqR5LCh3xkPaF2QN7TGwP2huLBpD1NMgNIfLxkIb2JBl2HQ7XDswJbIVIp7g4zTkOFK6zNjbtt13zcpNCqvKtraCeIwtT7nWny/CSHBsFdV7I0AnDMo5sFFC186dAc2kdCipXfTDdapKQ6ck8csBOOm/npLVwckeJCf9CYk7FHeMRINJIiyrLdogd8wKBW3Kme9T96Q/pHkkAxJdu1s63aRHHYhmg7plbmA7e7vhSuDHf4YlqoE="
+

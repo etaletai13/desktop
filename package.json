@@ -23,7 +23,29 @@
     "nwVersion": "0.30.5",
     "nwFlavor": "normal",
     "output": "./dist",
-    "ffmpegIntegration": true
+    "ffmpegIntegration": true,
+    "files": [
+      "bootnodes.json",
+      "package.json",
+      "bin/",
+      "facade/",
+      "hub/",
+      "interface/",
+      "node_modules/"
+    ],
+    "excludes": [
+      "node_modules/interface",
+      "node_modules/nwjs-builder-phoenix",
+      "node_modules/musicoin-daemon",
+      "*.md"
+    ],
+    "targets": [
+      "zip","nsis7z"
+    ],
+    "mac": {
+      "displayName": "Musicoin Desktop",
+      "copyright": "Musicoin"
+    }
   },
   "repository": {
     "type": "git",
@@ -34,35 +56,35 @@
     "bluebird": "~3.5.1",
     "ethereum-blockies": "github:ethereum/blockies",
     "ethers": "~3.0.17",
-    "fs-extra": "~5.0.0",
+    "fs-extra": "~6.0.1",
     "fs-finder": "~1.8.1",
-    "interface": "github:etaletai13/desktop-interface#06-06-18",
+    "interface": "../desktop-interface",
     "jsqr": "~1.0.4",
     "musicoin-daemon": "github:etaletai13/gmc-node-modules",
-    "ntp-client": "~0.5.3",
-    "nwjs-builder-phoenix": "^1.14.6",
+    "ntp-client": "",
     "pngjs": "~3.3.2",
     "qrcode": "~1.2.0",
-    "request": "~2.85.0",
+    "request": "~2.87.0",
     "request-promise-native": "~1.0.5",
-    "web3": "github:musicoin/web3.js",
+    "web3": "github:Musicoin/web3.js",
     "y18n": "~4.0.0",
     "zxcvbn": "~4.4.2"
   },
   "scripts": {
-    "preinstall": "rm -rf {./bin,./dist,./interface,./node_modules}",
-    "debug": "./node_modules/.bin/run --x64 ./",
-    "build-windows": "./node_modules/.bin/build --tasks win-x64 --miror https://dl.nwjs.io/ ./", 
-    "build-linux": "./node_modules/.bin/.build --tasks linux-x64 --mirror http://dl.nwjs.io/ ./",
-    "build-mac": "./node_modules/.bin/build --tasks mac-x64 --mirror https://dl.nwjs.io/",
-    "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
-    "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
-    "prepare": "yarn gmc-copy & yarn ux-copy",
-    "postinstall": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix",
+    "build-linux": "yarn run build --tasks linux-x86,linux-x64 --mirror http://dl.nwjs.io/ ./",
+    "build-mac": "yarn run build --tasks mac-x64 --mirror https://dl.nwjs.io/ ./",
+    "build-windows": "yarn run build --tasks win-x86,win-x64 --miror https://dl.nwjs.io/ ./",
+    "cleanup": "rm -rf node_modules",
+    "copy-gmc": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
+    "copy-ux": "cp -r ./node_modules/interface ./interface",
+    "debug": "yarn run run ./",
+    "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
+    "postinstall": "(yarn copy-gmc & yarn copy-ux)",
+    "preinstall": "rm -rf {./bin,./dist,./interface}",
     "test": "echo 'Placeholder'"
-    },
-  "optionalDependencies": {
-    "7zip-bin-linux": "^1.0.1",
-    "7zip-bin-mac": "^1.0.1"
+  },
+  "devDependencies": {
+    "7zip-bin-mac": "~1.0.1",
+    "@morhaus/nwjs-builder-phoenix": "~1.15.0"
   }
 }
