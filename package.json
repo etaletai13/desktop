@@ -58,8 +58,9 @@
     "ux-copy": "cp -r ./node_modules/interface ./interface && rm -f ./interface/package.json",
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "prepare": "yarn gmc-copy & yarn ux-copy",
-    "postinstall": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix"
-  },
+    "postinstall": "rm -rf {./interface/node_modules,./node_modules/interface,./node_modules/musicoin-daemon,./node_modules/musicoin-dmg,./node_modules/nwjs-builder-phoenix",
+    "test": "echo 'Placeholder'"
+    },
   "optionalDependencies": {
     "7zip-bin-linux": "^1.0.1",
     "7zip-bin-mac": "^1.0.1"
