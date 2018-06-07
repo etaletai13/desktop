@@ -2,6 +2,3 @@ os: linux
 language: node_js
 node_js: 8.0.0
 yarn: 1.7.0
-cache:
-  yarn:
-    - true
