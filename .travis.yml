@@ -2,6 +2,8 @@ os: osx
 osx_image: xcode9.3
 language: node_js
 yarn: 1.7.0
+cache:
+  - yarn
 node_js: 8.0.0
 go: 1.10.0
 before_install:
@@ -9,7 +11,7 @@ before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
 - export PATH="$HOME/.yarn/bin:$PATH"
 install:
-- yarn --link-duplicates -f
+- yarn add -D 7zip-bin-mac --ignore-optional --force --link-duplicates
 - long_wait yarn run build-x86 ./
 - long_wait yarn run build-x64 ./
 before_deploy:
