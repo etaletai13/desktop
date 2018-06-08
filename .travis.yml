@@ -13,9 +13,7 @@ before_install:
 install:
 - yarn --link-duplicates
 after_install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait yarn build-mac; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-linux; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-win; fi
+- yarn build-all
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "13@gmail.com"

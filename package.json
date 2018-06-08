@@ -81,7 +81,7 @@
     "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
     "postinstall": "(yarn copy-gmc & yarn copy-ux)",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
-    "test": "echo 'Placeholder'"
+    "test": "yarn build-all"
   },
   "devDependencies": {
     "7zip-bin-mac": "~1.0.1",
