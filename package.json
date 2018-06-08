@@ -64,12 +64,12 @@
     "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
     "postinstall": "(yarn copy-gmc & yarn copy-ux)",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
-    "test": "yarn build-all"
+    "test": "ls -a dist/"
   },
   "devDependencies": {
     "7zip-bin-mac": "~1.0.1",
     "@morhaus/nwjs-builder-phoenix": "~1.15.0",
-    "interface": "github:etaletai13/desktop-interface#staging",
-    "musicoin-daemon": "github:etaletai13/gmc-node-modules"
+    "interface": "github:Musicoin/desktop-interface#staging",
+    "musicoin-daemon": "github:Musicoin/gmc-node-modules"
   }
 }
