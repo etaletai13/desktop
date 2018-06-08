@@ -11,7 +11,8 @@ before_install:
 install:
 - yarn --link-duplicates
 after_install:
-- travis_wait yarn build-all
+- travis_wait yarn build-x64
+- travis_wait yarn build-x86
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "13@gmail.com"
