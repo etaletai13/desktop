@@ -24,14 +24,19 @@
     "nwFlavor": "normal",
     "output": "./dist",
     "ffmpegIntegration": true,
-    "targets": [
-      "zip",
-      "nsis7z"
-    ],
-    "mac": {
-      "displayName": "Musicoin Desktop",
-      "copyright": "Musicoin"
-    }
+    "excludes": [
+      "dist/",
+      "local/",
+      "config/config.ext.js",
+      "favicon.png",
+      "*.log",
+      "*.md",
+      ".yarn.lock",
+      ".git",
+      ".gitignore",
+      ".snyk",
+      ".travis.yml"
+    ]
   },
   "repository": {
     "type": "git",
@@ -64,8 +69,8 @@
     "test": "ls -a dist/"
   },
   "devDependencies": {
-    "@morhaus/nwjs-builder-phoenix": "~1.15.0",
     "interface": "github:etaletai13/desktop-interface",
-    "musicoin-daemon": "github:etaletai13/gmc-node-modules"
+    "musicoin-daemon": "github:etaletai13/gmc-node-modules",
+    "nwjs-builder-phoenix": "^1.14.6"
   }
 }
