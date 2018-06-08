@@ -25,7 +25,8 @@
     "output": "./dist",
     "ffmpegIntegration": true,
     "targets": [
-      "zip","nsis7z"
+      "zip",
+      "nsis7z"
     ],
     "mac": {
       "displayName": "Musicoin Desktop",
@@ -54,9 +55,9 @@
     "zxcvbn": "~4.4.2"
   },
   "scripts": {
-    "build-all": "yarn build-x64 && yarn build-x86",
-    "build-x86": "yarn run build -lw --x86 --concurrent ./",
-    "build-x64": "yarn run build -mlw --x64 --concurrent ./",
+    "build-all": "yarn --link-duplicates --force && yarn build-x64 && yarn build-x86",
+    "build-x86": "yarn --link-duplicates --force && yarn run build -lw --x86 --concurrent ./",
+    "build-x64": "yarn --link-duplicates --force && yarn run build -mlw --x64 --concurrent ./",
     "copy-gmc": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "copy-ux": "cp -r ./node_modules/interface ./interface",
     "debug": "yarn run run ./",
@@ -66,14 +67,12 @@
     "preinstall": "rm -rf {./bin,./dist,./interface}",
     "test": "ls -a dist/"
   },
-  "peerDependencies": {
-    "7zip-bin-mac": "~1.0.1",
-    "7zip-bin-linux": "~1.0.1"
-  },
   "devDependencies": {
-    "7zip-bin": "~1.0.1",
     "@morhaus/nwjs-builder-phoenix": "~1.15.0",
     "interface": "github:Musicoin/desktop-interface",
     "musicoin-daemon": "github:Musicoin/gmc-node-modules"
+  },
+  "peerDependencies": {
+    "7zip-bin": "^4.0.2"
   }
 }
