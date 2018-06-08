@@ -16,7 +16,7 @@ before_install:
 - export PATH="$HOME/.yarn/bin:$PATH"
 install:
 - if [ $TRAVIS_OS_NAME = "osx" ]; then yarn add -D 7zip-bin-mac --ignore-optional --force --link-duplicates; fi
-- if [ $TRAVIS_OS_NAME = "linux" ]; then yarn add -D 7zip-bin-linux --ignore-optional --force --link-duplicates; fi
+- if [ $TRAVIS_OS_NAME = "linux" ]; then (yarn dev-cleanup; yarn add -D 7zip-bin-linux --ignore-optional --force --link-duplicates); fi
 - travis_wait yarn build-x86
 - travis_wait yarn build-x64
 before_deploy:
