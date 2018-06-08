@@ -57,7 +57,7 @@
     "ethers": "~3.0.17",
     "fs-extra": "~6.0.1",
     "fs-finder": "~1.8.1",
-    "interface": "github:etaletai13/desktop-interface#staging",
+    "interface": "github:etaletai13/desktop-interface",
     "jsqr": "~1.0.4",
     "musicoin-daemon": "github:etaletai13/gmc-node-modules",
     "ntp-client": "",

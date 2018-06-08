@@ -1,13 +1,12 @@
 *.swn
 *.swo
 *.swp
-/bower_components/
+interface/
+node_modules/
 nohup.out
-npm-debug.log
 runwatched.sh
 watcher.sh
 switchworkspace.sh
-node_modules/*
 /**/.DS_Store
 .atomignore
 hub/ether.settings.js
