@@ -500,7 +500,7 @@ inherits@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
 
-"interface@github:etaletai13/desktop-interface":
+"interface@github:etaletai13/desktop-interface#staging":
   version "1.5.1"
   resolved "https://codeload.github.com/etaletai13/desktop-interface/tar.gz/82d38f8e8e7a91c73665ea9d2c21c8da52e9e1d3"
   dependencies:

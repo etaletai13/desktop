@@ -24,20 +24,6 @@
     "nwFlavor": "normal",
     "output": "./dist",
     "ffmpegIntegration": true,
-    "files": [
-      "bootnodes.json",
-      "package.json",
-      "bin/",
-      "facade/",
-      "hub/",
-      "interface/",
-      "node_modules/"
-    ],
-    "excludes": [
-      "node_modules/interface",
-      "node_modules/musicoin-daemon",
-      "*.md"
-    ],
     "targets": [
       "zip","nsis7z"
     ],
@@ -57,9 +43,7 @@
     "ethers": "~3.0.17",
     "fs-extra": "~6.0.1",
     "fs-finder": "~1.8.1",
-    "interface": "github:etaletai13/desktop-interface",
     "jsqr": "~1.0.4",
-    "musicoin-daemon": "github:etaletai13/gmc-node-modules",
     "ntp-client": "",
     "pngjs": "~3.3.2",
     "qrcode": "~1.2.0",
@@ -84,6 +68,8 @@
   },
   "devDependencies": {
     "7zip-bin-mac": "~1.0.1",
-    "@morhaus/nwjs-builder-phoenix": "~1.15.0"
+    "@morhaus/nwjs-builder-phoenix": "~1.15.0",
+    "interface": "github:etaletai13/desktop-interface#staging",
+    "musicoin-daemon": "github:etaletai13/gmc-node-modules"
   }
 }
