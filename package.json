@@ -22,11 +22,11 @@
     "appId": "org.musicoin.app.desktop",
     "nwVersion": "0.30.5",
     "nwFlavor": "normal",
+    "files": [
+      "**/*"
+    ],
     "output": "./dist",
     "ffmpegIntegration": true,
-    "excludes": [
-      "interface/node_modules"
-    ],
     "targets": [
       "zip",
       "nsis7z"
@@ -60,8 +60,8 @@
     "build-x64": "yarn --link-duplicates --force && yarn run build -mlw --x64 --concurrent ./",
     "copy-gmc": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/* ./bin/gmc/",
     "copy-ux": "cp -r ./node_modules/interface ./interface",
-    "debug": "yarn run run ./",
-    "dev-cleanup": "rm -rf {./node_modules,./yarn.lock}",
+    "debug": "yarn --link-duplicates --force && yarn run run ./",
+    "dev-cleanup": "rm -rf ./node_modules",
     "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
     "postinstall": "(yarn copy-gmc & yarn copy-ux)",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
