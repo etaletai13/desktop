@@ -8,7 +8,8 @@ node_js: 8.0.0
 go: 1.10.0
 addons:
   apt:
-  - wine
+    packages:
+    - wine
 before_install:
 - if [ $TRAVIS_OS_NAME = "osx" ]; then brew install wine; fi
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
