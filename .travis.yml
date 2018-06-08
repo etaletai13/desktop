@@ -10,7 +10,7 @@ before_install:
 - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN
   CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 install:
-- yarn --link-duplicates --production
+- yarn --link-duplicates
 after_install:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait yarn build-mac; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-linux; fi
@@ -35,7 +35,7 @@ addons:
       description: "Musicoin Desktop"
     notification_email: 13@etaletai.com
     build_command_prepend: "yarn --link-duplicates --production"
-    build_command: "yarn run build --tasks linux-x64 ./"
+    build_command: "yarn run build-all"
     branch_pattern: staging
 env:
   global:

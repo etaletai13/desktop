@@ -35,7 +35,6 @@
     ],
     "excludes": [
       "node_modules/interface",
-      "node_modules/nwjs-builder-phoenix",
       "node_modules/musicoin-daemon",
       "*.md"
     ],
@@ -58,7 +57,7 @@
     "ethers": "~3.0.17",
     "fs-extra": "~6.0.1",
     "fs-finder": "~1.8.1",
-    "interface": "../desktop-interface",
+    "interface": "github:etaletai13/desktop-interface#staging",
     "jsqr": "~1.0.4",
     "musicoin-daemon": "github:etaletai13/gmc-node-modules",
     "ntp-client": "",
@@ -71,6 +70,7 @@
     "zxcvbn": "~4.4.2"
   },
   "scripts": {
+    "build-all": "yarn build-linux && yarn build-mac && yarn build-windows",
     "build-linux": "yarn run build --tasks linux-x86,linux-x64 --mirror http://dl.nwjs.io/ ./",
     "build-mac": "yarn run build --tasks mac-x64 --mirror https://dl.nwjs.io/ ./",
     "build-windows": "yarn run build --tasks win-x86,win-x64 --miror https://dl.nwjs.io/ ./",
