@@ -17,8 +17,8 @@ before_install:
 install:
 - if [ $TRAVIS_OS_NAME = "osx" ]; then yarn add -D 7zip-bin-mac --ignore-optional --force --link-duplicates; fi
 - if [ $TRAVIS_OS_NAME = "linux" ]; then yarn add -D 7zip-bin-linux --ignore-optional --force --link-duplicates; fi
-- travis_wait 15 (yarn build-x86 && trap 0 exit)
-- travis_wait 15 (yarn build-x64 && trap 0 exit)
+- travis_wait yarn build-x86
+- travis_wait yarn build-x64
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "13@gmail.com"
