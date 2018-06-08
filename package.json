@@ -60,7 +60,7 @@
     "debug": "yarn --link-duplicates --force && yarn run run ./",
     "dev-cleanup": "rm -rf ./node_modules",
     "prepare": "rm -rf ./interface/package.json",
-    "postinstall": "yarn copy-gmc && yarn copy-ux && rm -f ./interface/bower.json",
+    "postinstall": "yarn copy-gmc && yarn copy-ux && rm -f ./interface/bower.json && rm -rf {./node_modules/interface,./node_modules/musicoin-daemon}",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
     "test": "ls -a dist/"
   },
