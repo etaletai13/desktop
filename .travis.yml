@@ -12,9 +12,10 @@ before_install:
 - export PATH="$HOME/.yarn/bin:$PATH"
 install:
 - yarn add -D 7zip-bin-mac --ignore-optional --force --link-duplicates
-- travis_wait yarn build-x86
-- yarn preinstall && rm -rf node_modules
-- travis_wait yarn build-x64
+- travis_wait yarn build -m --x64 ./
+- travis_wait yarn build -l --x64 --x86 ./
+- travis_wait yarn build -w --x86 ./
+- travis_wait yarn build -w --x64 ./
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "13@gmail.com"
