@@ -24,6 +24,9 @@
     "nwFlavor": "normal",
     "output": "./dist",
     "ffmpegIntegration": true,
+    "excludes": [
+      "interface/node_modules"
+    ],
     "targets": [
       "zip",
       "nsis7z"
@@ -39,10 +42,8 @@
   },
   "bugs": "https://github.com/Musicoin/desktop/issues",
   "dependencies": {
-    "bluebird": "~3.5.1",
     "ethereum-blockies": "github:ethereum/blockies",
     "ethers": "~3.0.17",
-    "fs-extra": "~6.0.1",
     "fs-finder": "~1.8.1",
     "jsqr": "~1.0.4",
     "ntp-client": "",
@@ -51,7 +52,6 @@
     "request": "~2.87.0",
     "request-promise-native": "~1.0.5",
     "web3": "github:Musicoin/web3.js",
-    "y18n": "~4.0.0",
     "zxcvbn": "~4.4.2"
   },
   "scripts": {
@@ -71,8 +71,5 @@
     "@morhaus/nwjs-builder-phoenix": "~1.15.0",
     "interface": "github:Musicoin/desktop-interface",
     "musicoin-daemon": "github:Musicoin/gmc-node-modules"
-  },
-  "peerDependencies": {
-    "7zip-bin": "^4.0.2"
   }
 }
