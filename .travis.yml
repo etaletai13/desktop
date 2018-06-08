@@ -10,10 +10,9 @@ before_install:
 - export PATH="$HOME/.yarn/bin:$PATH"
 install:
 - yarn --link-duplicates
-- travis_wait 10 yarn run build -l --x64 --x86 --concurrent ./ && echo 'Linux x86 & x64'
-- travis_wait 10 yarn run build -w --x64 --x86 --concurrent ./ && echo 'Windows x86 & x64'
 after_install:
-- travis_wait 20 yarn run build -m --x86 --concurrent ./ && echo 'Mac x64'
+- long_wait yarn run build-x86 ./
+- long_wait yarn run build-x64 ./
 - echo '√'
 before_deploy:
 - git config --local user.name "etaletai13"
