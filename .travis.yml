@@ -16,6 +16,10 @@ after_install:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait yarn build-mac; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-linux; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait yarn build-win; fi
+before_deploy:
+- git config --local user.name "etaletai13"
+- git config --local user.email "13@gmail.com"
+- git tag "1.5.0-$(date +'%Y%m%d')"
 deploy:
   provider: releases
   api_key:
