@@ -1,4 +1,4 @@
-![Travis](https://img.shields.io/travis/Desktop/desktop.svg?style=for-the-badge)
+![Travis](https://img.shields.io/travis/etaletai13/desktop.svg?style=for-the-badge)
 [![GitHub release](https://img.shields.io/github/release/Musicoin/desktop.svg?style=for-the-badge)](https://github.com/Musicoin/desktop/releases/latest)
 [![license](https://img.shields.io/github/license/Musicoin/desktop.svg?style=for-the-badge)](https://github.com/Musicoin/desktop/blob/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/Musicoin/desktop/total.svg?style=for-the-badge)](https://github.com/Musicoin/desktop/releases) 
@@ -26,9 +26,8 @@ Prerequisites:
 - optionally wine for windows builds on mac or linux
 
 1. `git clone https://github.com/Musicoin/desktop && cd desktop`
-2. _HACK_: depending on your os, `yarn add -D 7zip-bin-[win,mac,linux]` - This is a temporary workaround for 7zip-bin being broken.
-3. `yarn --link-duplicates`
-4. `yarn debug` - This will run in SDK mode for development.
+2. _HACK_: depending on your os, `yarn add -D 7zip-bin-[win,mac,linux] --ignore-scripts` - This is a temporary workaround for 7zip-bin being broken.
+3. `yarn debug` - This will run in SDK mode for development.
 5. `yarn build-all`
       -or-
    `yarn build-x86`
