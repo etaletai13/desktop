@@ -69,7 +69,7 @@
     "gmc-copy": "mkdir -p ./bin/gmc && cp -r ./node_modules/musicoin-daemon/bin/gmc* ./bin/gmc/",
     "preinstall": "rm -rf ./interface ./bin",
     "postinstall": "yarn gmc-copy && yarn ux-copy",
-    "test": "rm -rf dist && ./node_modules/.bin/nwb nwbuild ./",
+    "travis-build": "rm -rf dist && ./node_modules/.bin/nwb nwbuild --tasks osx-x64,linux-x64,win-x64 ./",
     "debug": "./node_modules/.bin/nwb nwbuild -r ./"
   }
 }
