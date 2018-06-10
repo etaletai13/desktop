@@ -2,10 +2,15 @@ os: osx
 osx_image: xcode9.3
 cache:
   yarn:
-    - true
+  - true
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
-  - export PATH="$HOME/.yarn/bin:$PATH"
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+- export PATH="$HOME/.yarn/bin:$PATH"
 language: node_js
 node_js: 10.0.0
 yarn: 1.6.0
+deploy:
+  provider: releases
+  api_key:
+    secure: fRUaIxKkmh29KwLwiDYkOIQZ7GYOJNbsRVgnf/ePCj89dnBSsFYJeFw6wTXPJi4KU+A0RnHxfLNPiE7m4mh27ZI95k7gAVfYxGVhRMi6l0n9blKw+n5pY8N+nOIINfKOPZHYWn4WyD+GThsP1jFxdS9QA30LDVGJhDWB6YEkFDVRTgnDL9nSPlt5MIx8NNfW63Lv/8WRLDqHvsnuM3DoRQ3YxCWpIh9zePk/Os6ctOVmqBYIc8xKUn35oCDF9okDh/keiiZ3ozyEVuk+QVkr62W20w6RUeVVolttUr/2wcO+TLphCa3WBHqqJrY6VD5jDxYqQXkfzsLsPXYpkISqqpBXU9VRPjfC73MDjPFjZOhJQIWRFo3tSJj29nEaFMGgaogaRnAkMMTxluzGkPfY7KyZa+T+16F64ptRpFS5rT/4ZjoJeRSo7aWaO5Hxuu6qNj7X6RbrsJ0CHuZAWcSu/THQP1DA1dIpKjWIqmf0xa0BTNjD9rls1q0Ser8YCtqIOSKjWUEjJShnWQSaaKkbMQFJd7Ig2Ttt1JBIHHMiM0/bc87rBKt+GOTb3kMV5R6WPlTLqRE2rxKm9O1O1NB0VrSjsOpPfVvFpnlJokY3EKr1ZzrqQ5rP1EumbDxS+HbjMoX1YiGT8U5gT6rN91rkVO4Lk9dUydtoXbkYlMsS20E=
+  file: "**/*"

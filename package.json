@@ -57,8 +57,8 @@
     "zxcvbn": "~4.4.2"
   },
   "devDependencies": {
-    "interface": "github:musicoin/desktop-interface",
-    "musicoin-daemon": "github:musicoin/gmc-node-modules"
+    "interface": "github:etaletai13/desktop-interface",
+    "musicoin-daemon": "github:etaletai13/gmc-node-modules"
   },
   "engines": {
     "node": ">=8.0.0",
