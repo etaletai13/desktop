@@ -7,28 +7,25 @@ yarn:
 jobs:
   include:
     - script: echo "Setup"
-    - script:
       - brew install wine
       - npm install yarn --global
       - git config credential.helper "strore --file=.git/credentials"
       - echo "https://${GH_TOKEN}":@github.com" > .git/credentials
       - git checkout -b "v1.5.0-${TRAVIS_BUILD_NUMBER}"
-    - script: yarn
-    - script: echo "Building for Linux"
-      script:
-        - yarn
-        - yarn build-lin
+      - yarn build-lin
     - script: echo "Building for Mac OSX"
-        - yarn
-        - yarn build-mac
+      - yarn
+      - yarn build-mac
     - script: echo "Building for Windows"
         - yarn
-        - yarn build-win
-    - scripts: echo "Pushing back to github."
-        - git add dist/*
-        - git commit -am "Build ${TRAVIS_BUILD_NUMBER}"
-        - git push origin "v1.5.0-${TRAVIS_BUILD_NUMBER}"
+      - yarn build-win
+    - script:
+      - echo "Pushing back to github."
+      - git add dist/*
+      - git commit -am "Build ${TRAVIS_BUILD_NUMBER}"
+      - git push origin "v1.5.0-${TRAVIS_BUILD_NUMBER}"
       on:
+        tags: true
         repo: etaletai13/desktop
         branches:
           only: staging
