@@ -1,11 +1,46 @@
 language: node_js
 yarn: 1.7.0
 node_js: 8.0.0
-go: 1.10.0
 before_script:
-- brew install wine
+jobs:
+  include:
+    stage: Build for Linux
+      node_js: 8
+      yarn: 1.7.0
+      before_script:
+      - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
+      - export PATH="$HOME/.yarn/bin:$PATH"
+      - yarn
+      script:
+      - yarn build-lin
+      after_success:
+      - git add dist/*
+      - git commit -am "lin-${TRAVIS_BUILD_NUMBER}"
+    stage: Build for Windows
+      os: osx
+      node_js: 8
+      yarn: 1.7.0
+      before_script:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
 - export PATH="$HOME/.yarn/bin:$PATH"
-- yarn --link-duplicates
-after_success:
-- echo '√'
+      - brew install wine
+      - yarn
+      script:
+      - yarn build-win
+      after_success:
+      - git add dist/*
+      - git commit -am "win-${TRAVIS_BUILD_NUMBER}"
+    stage: Build for Mac
+      os: osx
+      node_js: 8
+      yarn: 1.7.0
+      before_script:
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
+- export PATH="$HOME/.yarn/bin:$PATH"
+      - yarn
+      script:
+      - yarn build-mac
+      after_success:
+      - git add dist/* 
+      - git commit -am "mac-${TRAVIS_BUILD_NUMBER}"
+
