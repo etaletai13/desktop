@@ -71,7 +71,6 @@
   "devDependencies": {
     "@etaletai13/gmc-bin": "github:etaletai13/gmc-bin",
     "interface": "github:movingelectrons/interface",
-    "nwjs-builder": "~1.14.0",
     "7zip-bin-mac": "~1.0.1"
   },
   "engines": {
