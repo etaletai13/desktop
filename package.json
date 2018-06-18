@@ -59,19 +59,21 @@
     "build-mac": "yarn gmc-win && yarn run build -m --x64 ./",
     "build-win": "yarn gmc-win && yarn run build -w --x64 ./",
     "cleanup": "rm -rf node_modules",
-    "gmc-lin": "rm -rf bin/gmc && mkdir -p bin/gmc && cp node_modules/.bin/gmc-lin bin/gmc/gmc",
-    "gmc-mac": "rm -rf bin/gmc && mkdir -p bin/gmc && cp node_modules/.bin/gmc-mac bin/gmc/gmc",
-    "gmc-win": "rm -rf bin/gmc && mkdir -p bin/gmc && cp node_modules/.bin/gmc-win bin/gmc/gmc",
-    "postinstall": "cp -r ./node_modules/interface ./interface",
+    "gmc-clean": "rm -rf bin/gmc && mkdir -p bin/gmc",
+    "gmc-lin": "cp node_modules/.bin/gmc-linux bin/gmc/gmc",
+    "gmc-mac": "cp node_modules/.bin/gmc-darwin bin/gmc/gmc",
+    "gmc-win": "cp node_modules/.bin/gmc-win32 bin/gmc/gmc",
+    "postinstall": "cp -r ./node_modules/interface ./interface && yarn gmc-clean",
     "debug": "yarn run run ./",
     "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
     "test": "ls -a dist/"
   },
   "devDependencies": {
-    "@etaletai13/gmc-bin": "github:etaletai13/gmc-bin",
+    "7zip-bin-mac": "~1.0.1",
+    "@etaletai13/gmc-bin": "../gmc-bin",
     "interface": "github:movingelectrons/interface",
-    "7zip-bin-mac": "~1.0.1"
+    "nwjs-builder-phoenix": "^1.14.6"
   },
   "engines": {
     "node": ">=8.0.0",
