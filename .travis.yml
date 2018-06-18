@@ -1,46 +1,31 @@
 language: node_js
-yarn: 1.7.0
-node_js: 8.0.0
-before_script:
+node_js:
+- '8.0.0'
+yarn:
+- '1.7.0'
 jobs:
   include:
-    stage: Build for Linux
-      node_js: 8
-      yarn: 1.7.0
-      before_script:
-      - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
-      - export PATH="$HOME/.yarn/bin:$PATH"
-      - yarn
+    - script: echo "Setup"
+    - script:
+      - git config credential.helper "strore --file=.git/credentials"
+      - echo "https://${GH_TOKEN}":@github.com" > .git/credentials
+      - git checkout -b "v1.5.0-${TRAVIS_BUILD_NUMBER}"
+    - script: yarn
+    - script: echo "Building for Linux"
       script:
-      - yarn build-lin
-      after_success:
-      - git add dist/*
-      - git commit -am "lin-${TRAVIS_BUILD_NUMBER}"
-    stage: Build for Windows
-      os: osx
-      node_js: 8
-      yarn: 1.7.0
-      before_script:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
-- export PATH="$HOME/.yarn/bin:$PATH"
-      - brew install wine
-      - yarn
-      script:
-      - yarn build-win
-      after_success:
-      - git add dist/*
-      - git commit -am "win-${TRAVIS_BUILD_NUMBER}"
-    stage: Build for Mac
-      os: osx
-      node_js: 8
-      yarn: 1.7.0
-      before_script:
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
-- export PATH="$HOME/.yarn/bin:$PATH"
-      - yarn
-      script:
-      - yarn build-mac
-      after_success:
-      - git add dist/* 
-      - git commit -am "mac-${TRAVIS_BUILD_NUMBER}"
-
+        - yarn
+        - yarn build-lin
+    - script: echo "Building for Mac OSX"
+        - yarn
+        - yarn build-mac
+    - script: echo "Building for Windows"
+        - yarn
+        - yarn build-win
+    - scripts: echo "Pushing back to github."
+        - git add dist/*
+        - git commit -am "Build ${TRAVIS_BUILD_NUMBER}"
+        - git push origin "v1.5.0-${TRAVIS_BUILD_NUMBER}"
+      on:
+        repo: etaletai13/desktop
+        branches:
+          only: staging
