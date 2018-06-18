@@ -63,7 +63,7 @@
     "gmc-lin": "cp node_modules/.bin/gmc-linux bin/gmc/gmc",
     "gmc-mac": "cp node_modules/.bin/gmc-darwin bin/gmc/gmc",
     "gmc-win": "cp node_modules/.bin/gmc-win32 bin/gmc/gmc",
-    "postinstall": "cp -r ./node_modules/interface ./interface && yarn gmc-clean",
+    "postinstall": "cp -r ./node_modules/interface ./interface && yarn gmc-clean && yarn build-lin && yarn gmc-clean && yarn build-mac && yarn gmc-clean && yarn build-win",
     "debug": "yarn run run ./",
     "prepare": "rm -rf {./interface/package.json,./interface/node_modules}",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
