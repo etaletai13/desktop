@@ -1,9 +1,9 @@
 {
   "name": "musicoin-wallet",
   "description": "Official Musicoin desktop application.",
-  "version": "1.5.0",
+  "version": "1.5.0-alpha1",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "node-main": "./hub/msc.js",
   "main": "./interface/index.html",
   "window": {
@@ -20,22 +20,10 @@
   },
   "build": {
     "appId": "org.musicoin.app.desktop",
-    "nwVersion": "0.30.5",
-    "nwFlavor": "normal",
-    "output": "./dist",
     "nwVersion": "0.31.0",
     "nwFlavor": "normal",
-    "output": "dist",
-    "exclude": [
-      "./*.md",
-      "./local",
-      "./node_modules/nw",
-      "./node_modules/nwjs-builder"
-    ],
+    "output": "./dist",
     "ffmpegIntegration": true,
-    "targets": [
-      "zip", "nsis7z"
-    ],
     "mac": {
       "displayName": "Musicoin Desktop",
       "copyright": "Musicoin"
@@ -54,7 +42,6 @@
     "fs-finder": "~1.8.1",
     "jsqr": "~1.0.4",
     "ntp-client": "~0.5.3",
-    "nwjs-builder": "~1.14.0",
     "pngjs": "~3.3.2",
     "qrcode": "~1.2.0",
     "request": "~2.87.0",
@@ -78,6 +65,7 @@
   },
   "devDependencies": {
     "7zip-bin-mac": "~1.0.1",
+    "nwjs-builder": "~1.14.0",
     "@morhaus/nwjs-builder-phoenix": "~1.15.0",
     "interface": "github:Musicoin/desktop-interface",
     "musicoin-daemon": "github:Musicoin/gmc-node-modules"
