@@ -72,6 +72,7 @@
     "test": "ls -a dist/"
   },
   "devDependencies": {
+    "gmc-bin-prebuilts": "^1.0.0-beta6",
     "msc-interface": "^1.5.1-beta3",
     "nwjs-builder-phoenix": "^1.14.6"
   },

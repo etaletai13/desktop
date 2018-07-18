@@ -427,6 +427,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+gmc-bin-prebuilts@^1.0.0-beta6:
+  version "1.0.0-beta6"
+  resolved "https://registry.yarnpkg.com/gmc-bin-prebuilts/-/gmc-bin-prebuilts-1.0.0-beta6.tgz#929d55e93aea391f31a40f87744ef81b4e069b41"
+
 graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"

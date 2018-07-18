@@ -4,22 +4,20 @@ yarn: 1.7.0
 node_js: 8.0.0
 go: 1.10.0
 before_install:
+- brew install wine
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
 - export PATH="$HOME/.yarn/bin:$PATH"
 script:
 - yarn build.linux
 - yarn build.mac
-- yarn build.windows
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "parker.casey@gmail.com"
 - git tag "1.5.0-$TRAVIS_BUILD_NUMBER"
 deploy:
-  skip_cleanup: true
   provider: releases
+  api_key:
+    secure: kfB8a5HOmNryL0Q56rVJQ6Vyy3XSFnAA5dOTqOBTHSpvKFe2hCWc5cmZsEBQVILRSHKxH4/e4USHpru7UpIKqwJc7jTe+tB4g9kfz2vIL1HNIt0xak0zXU0hL85HggnagzEHyYcmyRfh++e+Y0Sm+0RxW9/j1rd1Q5PFr7qKyrrCHyXWU1yoevPnVwGaUc89lFRYhlk8npC2vpaH/R+ZCviJ3B2CccT2jWCCzTP8xonx545eHzr81bHQEVPfKmQ9wK5xVTHNOxuk6vHRRSwSekB7nb5i8gb1HgkCALJAS9cujvT9rYNI1vj0g9++t+XQhJc68N8khAL0kKC129zPUol2O9I/5NG7GyQHI//pEo5649ujqkp9udMR20lLxiCfP0WLh5dsc/lbta7Et+pk5v9c6aiAOx5PI9IV6DOw0IyIhj8irAoSMtLG0ZWoJRauSIQ+Pt6s7mKsg53M16G/RUf/y0maudVKFnhHSc8FbPc91WMMNTSyh1YLxKKEMUXgr11Se169Bnt9yQ74+BrfjUN5YGkfqPW6gKylRAeNM1h70yGuSRqheFX2B+mrxVgy7tbsH8RnV8DGk2wRme6kE0mE4O9IgidKbNpxTd8IF+xIpuckVYzENCjGnaMpYg7IFASMu8ly64iLzks3Ee8OpTxMLzZt3+R24rQ5X9yDIn4=
+  file: dist/*
   on:
-    branch: master
-  api_key: ${GH_TOKEN}
-  file:
-  - dist/*.zip
-  - dist\*.exe
+    repo: etaletai13/desktop
