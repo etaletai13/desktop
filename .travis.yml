@@ -17,6 +17,8 @@ before_deploy:
 deploy:
   skip_cleanup: true
   provider: releases
+  on:
+    branch: master
   api_key: ${GH_TOKEN}
   file:
   - dist/*.zip
