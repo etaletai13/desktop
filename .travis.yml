@@ -6,16 +6,18 @@ go: 1.10.0
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
 - export PATH="$HOME/.yarn/bin:$PATH"
+script:
+- yarn build.linux
+- yarn build.mac
+- yarn build.windows
 before_deploy:
 - git config --local user.name "etaletai13"
 - git config --local user.email "parker.casey@gmail.com"
 - git tag "1.5.0-$TRAVIS_BUILD_NUMBER"
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key: ${GH_TOKEN}
   file:
   - dist/*.zip
   - dist\*.exe
-  skip_cleanup: true
-  on:
-    tags: true

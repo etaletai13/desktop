@@ -67,7 +67,6 @@
     "copy-gmc.windows": "mkdir -p ./bin/gmc && cp ./node_modules/gmc-bin-prebuilts/bin/gmc-windows-4.0-amd64.exe ./bin/gmc/gmc && chmod +x ./bin/gmc/gmc",
     "copy-ux": "cp -r ./node_modules/msc-interface ./interface",
     "debug": "yarn run run ./",
-    "prepare": "yarn build.linux && yarn build.mac && yarn build.windows",
     "postinstall": "yarn copy-ux",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
     "test": "ls -a dist/"
