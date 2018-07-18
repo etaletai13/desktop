@@ -4,27 +4,9 @@ yarn: 1.7.0
 node_js: 8.0.0
 go: 1.10.0
 before_install:
-- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-- sudo apt-get install -qq apt-transport-https
-- echo "deb https://download.mono-project.com/repo/debian stable-jessie main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-- sudo apt-get update -qq
-- sudo apt-get install -qq mono-devel ca-certificates-mono
-- export PATH="$PATH:/Library/Frameworks/Mono.framework/Commands"
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
 - export PATH="$PATH:$HOME/.yarn/bin:$PATH"
-install:
-- yarn --link-duplicates
-- travis_wait 10 yarn run build -l --x64 --x86 --concurrent ./ && echo 'Linux x86 & x64'
-- travis_wait 10 yarn run build -w --x64 --x86 --concurrent ./ && echo 'Windows x86 & x64'
-after_install:
-- travis_wait 20 yarn run build -m --x86 --concurrent ./ && echo 'Mac x64'
-- echo '√'
 before_deploy:
-- openssl pkcs12 -in authenticode.pfx -nocerts -nodes -out key.pem
-- openssl rsa -in key.pem -outform PVK -pvk-strong -out authenticode.pvk
-- openssl pkcs12 -in authenticode.pfx -nokeys -nodes -out cert.pem
-- openssl crl2pkcs7 -nocrl -certfile cert.pem -outform DER -out authenticode.spc
-- signcode -spc authenticode.spc -v authenticode.pvk -a sha1 -$ commercial -n Musicoin\ Desktop -i https://www.musicoin.org/ -t http://timestamp.verisign.com/scripts/timstamp.dll -tr 10 Musicoin.exe
 - git config --local user.name "etaletai13"
 - git config --local user.email "parker.casey@gmail.com"
 - git tag "1.5.0-$TRAVIS_BUILD_NUMBER"
