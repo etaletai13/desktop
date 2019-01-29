@@ -55,7 +55,8 @@
     "request-promise-native": "~1.0.5",
     "web3": "github:Musicoin/web3.js",
     "y18n": "~4.0.0",
-    "zxcvbn": "~4.4.2"
+    "zxcvbn": "~4.4.2",
+    "snyk": "^1.123.0"
   },
   "scripts": {
     "build.linux": "yarn copy-gmc.linux && ./node_modules/.bin/build -l --x64 ./ && yarn cleanup",
@@ -69,7 +70,9 @@
     "debug": "yarn run run ./",
     "postinstall": "yarn copy-ux",
     "preinstall": "rm -rf {./bin,./dist,./interface}",
-    "test": "ls -a dist/"
+    "test": "ls -a dist/",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "gmc-bin-prebuilts": "^1.0.0-beta6",
@@ -79,5 +82,6 @@
   "engines": {
     "node": ">=8.0.0",
     "yarn": ">=1.7.0"
-  }
+  },
+  "snyk": true
 }
